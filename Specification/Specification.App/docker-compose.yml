@@ -1,0 +1,37 @@
+﻿version: "3.9"
+
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: mongo_db
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+      MONGO_INITDB_DATABASE: MinhaBase
+    volumes:
+      - mongo_data:/data/db
+      # Se quiser rodar scripts de inicialização, coloque em ./mongo-init
+      # - ./mongo-init:/docker-entrypoint-initdb.d
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql_server
+    restart: always
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "StrongPassword!123"
+      MSSQL_PID: "Developer"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+      # Se quiser rodar scripts de inicialização, pode montar uma pasta:
+      # - ./sql-init:/docker-entrypoint-initdb.d
+
+volumes:
+  mongo_data:
+  sqlserver_data:

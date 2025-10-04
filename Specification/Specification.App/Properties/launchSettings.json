@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Specification.App": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

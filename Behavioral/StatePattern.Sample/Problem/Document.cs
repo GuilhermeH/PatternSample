@@ -2,16 +2,17 @@
 {
     public class Document
     {
-        public EnumStatus Status { get; private set; }
+        private EnumStatus _status;
+        public EnumStatus Status => _status;
 
         public Document()
         {
-            Status = EnumStatus.Draft;
+            _status = EnumStatus.Draft;
         }
 
         public void Edit()
         {
-            if (Status == EnumStatus.Draft || Status == EnumStatus.Rejected)
+            if (_status == EnumStatus.Draft || _status == EnumStatus.Rejected)
             {
                 Console.WriteLine("Document be in draft status.");
             }
@@ -23,9 +24,9 @@
 
         public void SendToReview()
         {
-            if (Status == EnumStatus.Draft || Status == EnumStatus.Rejected)
+            if (_status == EnumStatus.Draft || _status == EnumStatus.Rejected)
             {
-                Status = EnumStatus.Reviewed;
+                _status = EnumStatus.Reviewed;
                 Console.WriteLine("Document send to review");
             }
             else
@@ -36,9 +37,9 @@
 
         public void Approve()
         {
-            if (Status == EnumStatus.Reviewed)
+            if (_status == EnumStatus.Reviewed)
             {
-                Status = EnumStatus.Approved;
+                _status = EnumStatus.Approved;
                 Console.WriteLine("Approved document");
             }
             else
@@ -49,9 +50,9 @@
 
         public void Reject()
         {
-            if (Status == EnumStatus.Reviewed)
+            if (_status == EnumStatus.Reviewed)
             {
-                Status = EnumStatus.Rejected;
+                _status = EnumStatus.Rejected;
                 Console.WriteLine("Rejected document");
             }
             else
@@ -62,9 +63,9 @@
 
         public void Cancel()
         {
-            if (Status == EnumStatus.Draft || Status == EnumStatus.Reviewed || Status == EnumStatus.Rejected)
+            if (_status == EnumStatus.Draft || _status == EnumStatus.Reviewed || _status == EnumStatus.Rejected)
             {
-                Status = EnumStatus.Canceled;
+                _status = EnumStatus.Canceled;
                 Console.WriteLine("Canceled document");
             }
             else

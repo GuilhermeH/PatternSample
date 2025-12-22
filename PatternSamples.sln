@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatePattern.Sample", "Beha
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Behavioral", "Behavioral", "{CCC9A437-B803-4D1C-B9A5-2E879376C726}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Creational", "Creational", "{CC049475-DEAB-4D4D-AE0E-70E27A16E8DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuilderPattern.Sample", "Creational\BuilderPattern.Sample\BuilderPattern.Sample.csproj", "{9378894C-D178-4E6D-B893-AEC5377BAE0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +21,17 @@ Global
 		{2270CF00-30E0-49B1-9650-2DF196B46E0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2270CF00-30E0-49B1-9650-2DF196B46E0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2270CF00-30E0-49B1-9650-2DF196B46E0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9378894C-D178-4E6D-B893-AEC5377BAE0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9378894C-D178-4E6D-B893-AEC5377BAE0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9378894C-D178-4E6D-B893-AEC5377BAE0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9378894C-D178-4E6D-B893-AEC5377BAE0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2270CF00-30E0-49B1-9650-2DF196B46E0A} = {CCC9A437-B803-4D1C-B9A5-2E879376C726}
+		{9378894C-D178-4E6D-B893-AEC5377BAE0C} = {CC049475-DEAB-4D4D-AE0E-70E27A16E8DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3DD29CA7-1DBD-41FA-936E-F24779AB0F2C}

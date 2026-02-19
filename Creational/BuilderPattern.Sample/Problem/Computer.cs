@@ -1,15 +1,15 @@
 namespace BuilderPattern.Sample.Problem
 {
     /// <summary>
-    /// Exemplo PROBLEMÁTICO: Classe com construtor grande e muitos parâmetros complexos.
+    /// Problematic Example: Class with large constructor and many complex parameters.
     /// 
     /// Problemas:
-    /// - Difícil de ler e entender qual parâmetro é qual
-    /// - Fácil passar parâmetros na ordem errada
-    /// - Objetos complexos precisam ser instanciados ANTES de passar para o construtor
-    /// - Código fica verboso e difícil de manter
-    /// - Parâmetros opcionais precisam ser passados mesmo quando não são necessários
-    /// - Difícil de manter quando novos parâmetros são adicionados
+    /// - Difficult to read and understand which parameter is which
+    /// - Easy to pass parameters in the wrong order
+    /// - Complex objects need to be instantiated BEFORE passing to the constructor
+    /// - Code becomes verbose and difficult to maintain
+    /// - Optional parameters need to be passed even when not needed
+    /// - Difficult to maintain when new parameters are added
     /// </summary>
     public class Computer
     {

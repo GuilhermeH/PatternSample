@@ -3,8 +3,8 @@ using BuilderPattern.Sample.Solution.ValueObjects;
 namespace BuilderPattern.Sample.SolutionWithDirector
 {
     /// <summary>
-    /// Classe Computer que será construída pelo Builder através do Director.
-    /// O Director encapsula a lógica de construção de diferentes tipos de computadores.
+    /// Solution Example: Class that will be built by the Builder through the Director.
+    /// The Director encapsulates the logic of building different types of computers.
     /// </summary>
     public class Computer
     {
@@ -36,19 +36,19 @@ namespace BuilderPattern.Sample.SolutionWithDirector
 
         public void DisplaySpecs()
         {
-            Console.WriteLine("=== Especificações do Computador ===");
-            Console.WriteLine($"Processador: {Processor.Model} - {Processor.SpeedGHz} GHz - {Processor.Cores} núcleos");
-            Console.WriteLine($"Memória: {Memory.CapacityGB} GB {Memory.Type}");
-            Console.WriteLine($"Armazenamento: {Storage.CapacityGB} GB {Storage.Type} {(Storage.IsSSD ? "(SSD)" : "(HDD)")}");
+            Console.WriteLine("=== Computer Specifications ===");
+            Console.WriteLine($"Processor: {Processor.Model} - {Processor.SpeedGHz} GHz - {Processor.Cores} cores");
+            Console.WriteLine($"Memory: {Memory.CapacityGB} GB {Memory.Type}");
+            Console.WriteLine($"Storage: {Storage.CapacityGB} GB {Storage.Type} {(Storage.IsSSD ? "(SSD)" : "(HDD)")}");
             
             if (GraphicsCard != null)
-                Console.WriteLine($"Placa de Vídeo: {GraphicsCard.Model} - {GraphicsCard.MemoryGB} GB");
+                Console.WriteLine($"Graphics Card: {GraphicsCard.Model} - {GraphicsCard.MemoryGB} GB");
             else
-                Console.WriteLine("Placa de Vídeo: Integrada");
+                Console.WriteLine("Graphics Card: Integrated");
             
-            Console.WriteLine($"Sistema Operacional: {OperatingSystem}");
-            Console.WriteLine($"Bluetooth: {(HasBluetooth ? "Sim" : "Não")}");
-            Console.WriteLine($"WiFi: {(HasWiFi ? "Sim" : "Não")}");
+            Console.WriteLine($"Operating System: {OperatingSystem}");
+            Console.WriteLine($"Bluetooth: {(HasBluetooth ? "Yes" : "No")}");
+            Console.WriteLine($"WiFi: {(HasWiFi ? "Yes" : "No")}");
             Console.WriteLine();
         }
     }

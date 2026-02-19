@@ -21,7 +21,7 @@ namespace BuilderPattern.Sample.Problem
         public bool HasBluetooth { get; }
         public bool HasWiFi { get; }
 
-        // Você precisa instanciar todos os objetos ANTES de criar o Computer
+        // You need to instantiate all objects BEFORE creating the Computer
         public Computer(
             Processor processor,
             Memory memory,
@@ -42,14 +42,14 @@ namespace BuilderPattern.Sample.Problem
 
         public void DisplaySpecs()
         {
-            Console.WriteLine("=== Especificações do Computador ===");
-            Console.WriteLine($"Processador: {Processor.Model} - {Processor.SpeedGHz} GHz - {Processor.Cores} núcleos");
-            Console.WriteLine($"Memória: {Memory.CapacityGB} GB {Memory.Type}");
-            Console.WriteLine($"Armazenamento: {Storage.CapacityGB} GB {Storage.Type} {(Storage.IsSSD ? "(SSD)" : "(HDD)")}");
-            Console.WriteLine($"Placa de Vídeo: {GraphicsCard.Model} - {GraphicsCard.MemoryGB} GB");
-            Console.WriteLine($"Sistema Operacional: {OperatingSystem}");
-            Console.WriteLine($"Bluetooth: {(HasBluetooth ? "Sim" : "Não")}");
-            Console.WriteLine($"WiFi: {(HasWiFi ? "Sim" : "Não")}");
+            Console.WriteLine("=== Computer Specifications ===");
+            Console.WriteLine($"Processor: {Processor.Model} - {Processor.SpeedGHz} GHz - {Processor.Cores} cores");
+            Console.WriteLine($"Memory: {Memory.CapacityGB} GB {Memory.Type}");
+            Console.WriteLine($"Storage: {Storage.CapacityGB} GB {Storage.Type} {(Storage.IsSSD ? "(SSD)" : "(HDD)")}");
+            Console.WriteLine($"Graphics Card: {GraphicsCard.Model} - {GraphicsCard.MemoryGB} GB");
+            Console.WriteLine($"Operating System: {OperatingSystem}");
+            Console.WriteLine($"Bluetooth: {(HasBluetooth ? "Yes" : "No")}");
+            Console.WriteLine($"WiFi: {(HasWiFi ? "Yes" : "No")}");
             Console.WriteLine();
         }
     }

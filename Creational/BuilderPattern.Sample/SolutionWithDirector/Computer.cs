@@ -1,32 +1,26 @@
-namespace BuilderPattern.Sample.Problem
+using BuilderPattern.Sample.Solution.ValueObjects;
+
+namespace BuilderPattern.Sample.SolutionWithDirector
 {
     /// <summary>
-    /// Exemplo PROBLEMÁTICO: Classe com construtor grande e muitos parâmetros complexos.
-    /// 
-    /// Problemas:
-    /// - Difícil de ler e entender qual parâmetro é qual
-    /// - Fácil passar parâmetros na ordem errada
-    /// - Objetos complexos precisam ser instanciados ANTES de passar para o construtor
-    /// - Código fica verboso e difícil de manter
-    /// - Parâmetros opcionais precisam ser passados mesmo quando não são necessários
-    /// - Difícil de manter quando novos parâmetros são adicionados
+    /// Classe Computer que será construída pelo Builder através do Director.
+    /// O Director encapsula a lógica de construção de diferentes tipos de computadores.
     /// </summary>
     public class Computer
     {
         public Processor Processor { get; }
         public Memory Memory { get; }
         public Storage Storage { get; }
-        public GraphicsCard GraphicsCard { get; }
+        public GraphicsCard? GraphicsCard { get; }
         public string OperatingSystem { get; }
         public bool HasBluetooth { get; }
         public bool HasWiFi { get; }
 
-        // Você precisa instanciar todos os objetos ANTES de criar o Computer
-        public Computer(
+        internal Computer(
             Processor processor,
             Memory memory,
             Storage storage,
-            GraphicsCard graphicsCard,
+            GraphicsCard? graphicsCard,
             string operatingSystem,
             bool hasBluetooth,
             bool hasWiFi)
@@ -46,7 +40,12 @@ namespace BuilderPattern.Sample.Problem
             Console.WriteLine($"Processador: {Processor.Model} - {Processor.SpeedGHz} GHz - {Processor.Cores} núcleos");
             Console.WriteLine($"Memória: {Memory.CapacityGB} GB {Memory.Type}");
             Console.WriteLine($"Armazenamento: {Storage.CapacityGB} GB {Storage.Type} {(Storage.IsSSD ? "(SSD)" : "(HDD)")}");
-            Console.WriteLine($"Placa de Vídeo: {GraphicsCard.Model} - {GraphicsCard.MemoryGB} GB");
+            
+            if (GraphicsCard != null)
+                Console.WriteLine($"Placa de Vídeo: {GraphicsCard.Model} - {GraphicsCard.MemoryGB} GB");
+            else
+                Console.WriteLine("Placa de Vídeo: Integrada");
+            
             Console.WriteLine($"Sistema Operacional: {OperatingSystem}");
             Console.WriteLine($"Bluetooth: {(HasBluetooth ? "Sim" : "Não")}");
             Console.WriteLine($"WiFi: {(HasWiFi ? "Sim" : "Não")}");

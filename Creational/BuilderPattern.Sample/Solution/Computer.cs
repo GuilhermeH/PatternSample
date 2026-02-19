@@ -2,11 +2,6 @@ using BuilderPattern.Sample.Solution.ValueObjects;
 
 namespace BuilderPattern.Sample.Solution
 {
-    /// <summary>
-    /// Exemplo SOLUÇÃO: Classe com construtor privado.
-    /// O objeto só pode ser criado através do Builder aninhado.
-    /// Agora usa objetos complexos imutáveis que são construídos via construtor.
-    /// </summary>
     public class Computer
     {
         public Processor Processor { get; } = null!;

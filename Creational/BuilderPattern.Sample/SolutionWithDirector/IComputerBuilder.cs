@@ -3,46 +3,46 @@ using BuilderPattern.Sample.Solution.ValueObjects;
 namespace BuilderPattern.Sample.SolutionWithDirector
 {
     /// <summary>
-    /// Builder (GoF): Interface que define os passos de construção do Product.
+    /// Builder (GoF): Interface that defines the construction steps of the Product.
     /// 
-    /// No padrão GoF, os métodos são void e não retornam this.
-    /// O Director é responsável por orquestrar a ordem de execução dos métodos.
+    /// In the GoF pattern, the methods are void and do not return this.
+    /// The Director is responsible for orchestrating the order of execution of the methods.
     /// </summary>
     public interface IComputerBuilder
     {
         /// <summary>
-        /// Passo 1: Construir o processador
+        /// Step 1: Build the processor
         /// </summary>
         void BuildProcessor();
 
         /// <summary>
-        /// Passo 2: Construir a memória
+        /// Step 2: Build the memory
         /// </summary>
         void BuildMemory();
 
         /// <summary>
-        /// Passo 3: Construir o armazenamento
+        /// Step 3: Build the storage
         /// </summary>
         void BuildStorage();
 
         /// <summary>
-        /// Passo 4: Construir a placa de vídeo (opcional)
+        /// Step 4: Build the graphics card (optional)
         /// </summary>
         void BuildGraphicsCard();
 
         /// <summary>
-        /// Passo 5: Configurar o sistema operacional
+        /// Step 5: Configure the operating system
         /// </summary>
         void BuildOperatingSystem();
 
         /// <summary>
-        /// Passo 6: Configurar conectividade (Bluetooth e WiFi)
+        /// Step 6: Configure connectivity (Bluetooth and WiFi)
         /// </summary>
         void BuildConnectivity();
 
         /// <summary>
-        /// Retorna o Product construído.
-        /// Nota: O Client deve criar uma nova instância do Builder para cada construção.
+        /// Returns the built Product.
+        /// Note: The Client must create a new instance of the Builder for each construction.
         /// </summary>
         Computer Build();
     }

@@ -3,10 +3,10 @@ using BuilderPattern.Sample.Solution.ValueObjects;
 namespace BuilderPattern.Sample.SolutionWithDirector
 {
     /// <summary>
-    /// ConcreteBuilder (GoF): Implementação do Builder para criar computadores de escritório.
+    /// ConcreteBuilder (GoF): Implementation of the Builder to create office computers.
     /// 
-    /// Cada ConcreteBuilder implementa a interface e define como construir
-    /// cada parte do Product de acordo com suas necessidades específicas.
+    /// Each ConcreteBuilder implements the interface and defines how to build
+    /// each part of the Product according to its specific needs.
     /// </summary>
     public class OfficeComputerBuilder : IComputerBuilder
     {
@@ -20,56 +20,56 @@ namespace BuilderPattern.Sample.SolutionWithDirector
 
         public void BuildProcessor()
         {
-            // Processador eficiente para tarefas de escritório
+            // Efficient processor for office tasks
             _processor = new Processor("Intel Core i5-13400", 4.6, 10);
         }
 
         public void BuildMemory()
         {
-            // Memória adequada para multitarefa de escritório
+            // Memory suitable for office multitasking
             _memory = new Memory("DDR4", 16);
         }
 
         public void BuildStorage()
         {
-            // Armazenamento suficiente para documentos e aplicativos
+            // Sufficient storage for documents and applications
             _storage = new Storage("SATA", 512, true);
         }
 
         public void BuildGraphicsCard()
         {
-            // Sem placa de vídeo dedicada - usa gráficos integrados
+            // No dedicated graphics card - uses integrated graphics
             _graphicsCard = null;
         }
 
         public void BuildOperatingSystem()
         {
-            // Sistema operacional Home para uso básico
+            // Operating system Home for basic use
             _operatingSystem = "Windows 11 Home";
         }
 
         public void BuildConnectivity()
         {
-            // Conectividade completa para escritório
+            // Complete connectivity for office
             _hasBluetooth = true;
             _hasWiFi = true;
         }
 
         public Computer Build()
         {
-            // Validação antes de construir
+            // Validation before building
             if (_processor == null || _memory == null || _storage == null)
             {
-                throw new InvalidOperationException("Componentes obrigatórios não foram construídos!");
+                throw new InvalidOperationException("Required components were not built!");
             }
 
             if (string.IsNullOrEmpty(_operatingSystem))
             {
-                throw new InvalidOperationException("Sistema Operacional não foi configurado!");
+                throw new InvalidOperationException("Operating System was not configured!");
             }
 
-            // Cria e retorna o Product
-            // Nota: O Client deve criar uma nova instância do Builder para cada construção
+            // Creates and returns the Product
+            // Note: The Client must create a new instance of the Builder for each construction
             return new Computer(
                 _processor,
                 _memory,

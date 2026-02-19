@@ -50,16 +50,16 @@ computer.DisplaySpecs();
 
 
 
-Console.WriteLine("=== EXEMPLO COM DIRECTOR (Builder Pattern GoF) ===\n");
+Console.WriteLine("=== EXAMPLE WITH DIRECTOR (Builder Pattern GoF) ===\n");
 
-// - O Director define e controla a ordem de construção do objeto
-// - O Builder expõe os passos de construção; "Computer" é obtido ao final do processo
-// - Cada ConcreteBuilder implementa a mesma interface, produzindo representações diferentes
-// - É indicado quando a criação do objeto deve respeitar uma ordem específica de passos
-// - Variações na ordem ou no processo de construção podem ser encapsuladas
-//   em outros Directors ou em métodos distintos de construção no mesmo Director
+// - The Director defines and controls the order of construction of the object
+// - The Builder exposes the construction steps; "Computer" is obtained at the end of the process
+// - Each ConcreteBuilder implements the same interface, producing different representations
+// - It is indicated when the object creation must respect a specific order of steps
+// - Variations in the order or construction process can be encapsulated
+//   in other Directors or in different construction methods in the same Director
 
-Console.WriteLine("=== COMPUTADOR GAMER (usando GamingComputerBuilder) ===\n");
+Console.WriteLine("=== COMPUTER GAMING (using GamingComputerBuilder) ===\n");
 
 var gamingBuilder = new SolutionWithDirector.GamingComputerBuilder();
 var director = new SolutionWithDirector.ComputerDirector(gamingBuilder);
@@ -68,7 +68,7 @@ var gamingComputer = director.Construct();
 gamingComputer.DisplaySpecs();
 
 
-Console.WriteLine("=== COMPUTADOR DE ESCRITÓRIO (usando OfficeComputerBuilder) ===\n");
+Console.WriteLine("=== OFFICE COMPUTER USING OFFICE COMPUTER BUILDER ===\n");
 
 var officeBuilder = new SolutionWithDirector.OfficeComputerBuilder();
 director = new SolutionWithDirector.ComputerDirector(officeBuilder);

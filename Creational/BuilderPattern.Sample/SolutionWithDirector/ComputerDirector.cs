@@ -30,9 +30,9 @@ namespace BuilderPattern.Sample.SolutionWithDirector
         }
 
         /// <summary>
-        /// Constrói um computador seguindo a receita definida pelo Director.
-        /// O Director orquestra a ordem dos passos, mas cada ConcreteBuilder
-        /// decide como implementar cada passo.
+        /// Builds a computer following the specifications defined by the Director.
+        /// The Director orchestrates the order of steps, but each ConcreteBuilder
+        /// decides how to implement each step.
         /// </summary>
         public Computer Construct()
         {
@@ -44,8 +44,8 @@ namespace BuilderPattern.Sample.SolutionWithDirector
             _builder.BuildOperatingSystem();
             _builder.BuildConnectivity();
 
-            // O método Build() retorna o Product construído
-            // Nota: Para construir outro Product, o Client deve criar uma nova instância do Builder
+        //      The Build() method returns the built Product
+            // Note: To build another Product, the Client must create a new instance of the Builder
             return _builder.Build();
         }
     }

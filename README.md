@@ -35,19 +35,19 @@ Each pattern example follows this structure:
 
 **Three implementations in this repository**:
 
-#### 1. **Problem** - Implementação Problemática
+#### 1. **Problem** - Problematic Implementation
 
-Demonstra os problemas de usar construtores grandes com objetos complexos:
+Demonstrates the problems of using large constructors with complex objects:
 
 ```csharp
-// PROBLEMA: Você precisa instanciar TODOS os objetos complexos ANTES
-// de criar o objeto principal - código verboso e difícil de manter
+// PROBLEM: You must instantiate ALL complex objects BEFORE
+// creating the main object - verbose and hard to maintain code
 var processor = new Processor("Intel i7", 3.8, 8);
 var memory = new Memory("DDR4", 16);
 var storage = new Storage("NVMe", 512, true);
 var graphicsCard = new GraphicsCard("NVIDIA RTX 3060", 12);
 
-// Construtor verboso e difícil de ler
+// Verbose and hard to read constructor
 var computer = new Computer(
     processor: processor,
     memory: memory,
@@ -59,23 +59,23 @@ var computer = new Computer(
 );
 ```
 
-**Problemas identificados**:
-- ✅ Código verboso e difícil de ler
-- ✅ Fácil passar parâmetros na ordem errada
-- ✅ Difícil entender qual objeto vai para qual parâmetro
-- ✅ Parâmetros opcionais precisam ser passados mesmo quando não são necessários
-- ✅ **Objetos complexos precisam ser instanciados ANTES de passar para o construtor**
-- ✅ Código fica difícil de manter quando novos parâmetros são adicionados
+**Identified problems**:
+- ✅ Verbose and hard to read code
+- ✅ Easy to pass parameters in the wrong order
+- ✅ Hard to understand which object goes to which parameter
+- ✅ Optional parameters must be passed even when not needed
+- ✅ **Complex objects must be instantiated BEFORE passing to the constructor**
+- ✅ Code becomes hard to maintain when new parameters are added
 
 ---
 
-#### 2. **Solution** - Fluent Builder (Abordagem Moderna)
+#### 2. **Solution** - Fluent Builder (Modern Approach)
 
-Implementação moderna usando **Fluent Interface** (Method Chaining). **Importante**: Fluent Interface não é definida pelo Builder Pattern do GoF. É uma abordagem moderna que melhora a legibilidade e a fluidez do código.
+Modern implementation using **Fluent Interface** (Method Chaining). **Note**: Fluent Interface is not defined by the GoF Builder Pattern. It is a modern approach that improves code readability and fluency.
 
 ```csharp
-// SOLUÇÃO: Builder com Fluent Interface
-// Objetos complexos (ValueObjects) são passados já criados
+// SOLUTION: Builder with Fluent Interface
+// Complex objects (ValueObjects) are passed already created
 var computer = new ComputerBuilder()
     .WithMemory(new Memory("DDR5", 32))
     .WithProcessor(new Processor("AMD Ryzen 9", 4.9, 16))
@@ -87,118 +87,118 @@ var computer = new ComputerBuilder()
     .Build();
 ```
 
-**Características**:
-- ✅ Métodos retornam `this` para encadeamento fluente
-- ✅ Cliente controla a ordem de construção (pode chamar em qualquer ordem)
-- ✅ Mais flexível e conveniente
-- ✅ API intuitiva e legível
-- ✅ Objetos complexos (ValueObjects) são passados já criados
-- ✅ Parâmetros opcionais podem ser omitidos
-- ✅ Validação no método `Build()`
+**Characteristics**:
+- ✅ Methods return `this` for fluent chaining
+- ✅ Client controls construction order (can call in any order)
+- ✅ More flexible and convenient
+- ✅ Intuitive and readable API
+- ✅ Complex objects (ValueObjects) are passed already created
+- ✅ Optional parameters can be omitted
+- ✅ Validation in the `Build()` method
 
-**Vantagens**:
-- Código mais limpo e legível
-- Construção incremental e intuitiva
-- Flexibilidade total na ordem dos métodos
-- Fácil de usar e entender
-- Não precisa conhecer a ordem correta de construção
+**Advantages**:
+- Cleaner and more readable code
+- Incremental and intuitive construction
+- Full flexibility in method order
+- Easy to use and understand
+- No need to know the correct construction order
 
-**Quando usar**:
-- Construção geral de objetos
-- Quando você quer flexibilidade na ordem de construção
-- Quando a simplicidade é prioridade
-- Quando a ordem de construção não é crítica
+**When to use**:
+- General object construction
+- When you want flexibility in construction order
+- When simplicity is a priority
+- When construction order is not critical
 
 ---
 
-#### 3. **SolutionWithDirector** - Builder GoF (Padrão Clássico)
+#### 3. **SolutionWithDirector** - Builder GoF (Classic Pattern)
 
-Implementação clássica seguindo fielmente o padrão do livro "Design Patterns" (Gang of Four):
+Classic implementation faithfully following the pattern from the "Design Patterns" (Gang of Four) book:
 
 ```csharp
-// Client: Cria um ConcreteBuilder específico
+// Client: Creates a specific ConcreteBuilder
 var gamingBuilder = new GamingComputerBuilder();
 
-// Client: Cria o Director passando o Builder
+// Client: Creates the Director passing the Builder
 var director = new ComputerDirector(gamingBuilder);
 
-// Client: Solicita construção - Director orquestra os passos na ordem correta
+// Client: Requests construction - Director orchestrates the steps in the correct order
 var computer = director.Construct();
 ```
 
-**Participantes do Padrão GoF**:
-- **Product** (`Computer`): O objeto sendo construído
-- **Builder** (`IComputerBuilder`): Interface que define os passos de construção
-- **ConcreteBuilder** (`GamingComputerBuilder`, `OfficeComputerBuilder`): Implementações específicas que produzem representações diferentes do Product
-- **Director** (`ComputerDirector`): Define e controla a ordem de construção do objeto
-- **Client**: Usa o Director para construir produtos
+**GoF Pattern participants**:
+- **Product** (`Computer`): The object being built
+- **Builder** (`IComputerBuilder`): Interface that defines the construction steps
+- **ConcreteBuilder** (`GamingComputerBuilder`, `OfficeComputerBuilder`): Specific implementations that produce different representations of the Product
+- **Director** (`ComputerDirector`): Defines and controls the object construction order
+- **Client**: Uses the Director to build products
 
-**Características**:
-- ✅ Métodos são `void` (não retornam `this`)
-- ✅ **Director define e controla a ordem de construção** - o Client não precisa conhecer a ordem
-- ✅ Interface comum permite diferentes implementações
-- ✅ Separação clara de responsabilidades
-- ✅ Cada ConcreteBuilder implementa a mesma interface, produzindo representações diferentes
-- ✅ `Build()` retorna o Product (nova instância do Builder para cada construção)
-- ✅ **O mesmo Director pode ser reutilizado com diferentes Builders** (Gaming, Office, etc.)
+**Characteristics**:
+- ✅ Methods are `void` (do not return `this`)
+- ✅ **Director defines and controls construction order** - the Client does not need to know the order
+- ✅ Common interface allows different implementations
+- ✅ Clear separation of responsibilities
+- ✅ Each ConcreteBuilder implements the same interface, producing different representations
+- ✅ `Build()` returns the Product (new Builder instance for each construction)
+- ✅ **The same Director can be reused with different Builders** (Gaming, Office, etc.)
 
-**Vantagens**:
-- Estrutura mais rígida e organizada
-- Director garante ordem correta de construção
-- Diferentes algoritmos de construção (Gaming vs Office) usando o mesmo Director
-- Fácil adicionar novos tipos de construção (novos ConcreteBuilders) sem modificar o Director
-- Separação clara entre construção (Builder) e orquestração (Director)
-- **Reutilização**: Um Director serve para múltiplos Builders que seguem a mesma ordem
+**Advantages**:
+- More rigid and organized structure
+- Director ensures correct construction order
+- Different construction algorithms (Gaming vs Office) using the same Director
+- Easy to add new construction types (new ConcreteBuilders) without modifying the Director
+- Clear separation between construction (Builder) and orchestration (Director)
+- **Reusability**: One Director serves multiple Builders that follow the same order
 
-**Quando usar**:
-- Quando você precisa de diferentes algoritmos de construção (valores diferentes, mesma ordem)
-- Quando a ordem de construção é crítica e deve ser controlada
-- Quando você quer encapsular receitas de construção complexas
-- Quando precisa de múltiplas variações do mesmo produto (ex: Gaming, Office, etc.)
-- **Quando a ordem de construção é a mesma para múltiplos tipos de produto**
+**When to use**:
+- When you need different construction algorithms (different values, same order)
+- When construction order is critical and must be controlled
+- When you want to encapsulate complex construction recipes
+- When you need multiple variations of the same product (e.g., Gaming, Office, etc.)
+- **When construction order is the same for multiple product types**
 
-**Sobre variações na ordem**:
-- Se precisar de ordem diferente, pode criar múltiplos Directors (um para cada receita)
-- Ou criar métodos diferentes no mesmo Director para diferentes receitas
-- O Director encapsula a receita de construção, garantindo que o Client não precise conhecer os detalhes
+**About order variations**:
+- If you need a different order, you can create multiple Directors (one for each recipe)
+- Or create different methods in the same Director for different recipes
+- The Director encapsulates the construction recipe, ensuring the Client does not need to know the details
 
 ---
 
-### 📊 Comparação Detalhada: Fluent Builder vs Builder GoF
+### 📊 Detailed Comparison: Fluent Builder vs Builder GoF
 
-| Aspecto | Fluent Builder | Builder GoF |
-|---------|---------------|-------------|
-| **Retorno dos Métodos** | Retorna `this` para encadeamento | Retorna `void` |
-| **Ordem de Construção** | Cliente controla | Director controla |
-| **Flexibilidade** | Alta - ordem livre | Média - ordem fixa definida pelo Director |
-| **Estrutura** | Uma classe Builder | Interface + múltiplas implementações |
-| **Reutilização** | Mesmo Builder para todos | Um Director pode ser reutilizado com diferentes ConcreteBuilders |
-| **Vantagem Principal** | Simplicidade e flexibilidade | Director encapsula receita; reutilizável com múltiplos Builders |
-| **Complexidade** | Mais simples | Mais estruturado |
-| **Uso Típico** | Construção geral, flexível | Construção com receitas pré-definidas |
-| **Exemplo de Uso** | `builder.WithX().WithY().Build()` | `director.Construct()` |
-| **Manutenção** | Fácil de modificar | Fácil adicionar novos tipos (novos ConcreteBuilders) |
+| Aspect | Fluent Builder | Builder GoF |
+|--------|----------------|-------------|
+| **Method Return** | Returns `this` for chaining | Returns `void` |
+| **Construction Order** | Client controls | Director controls |
+| **Flexibility** | High - free order | Medium - fixed order defined by Director |
+| **Structure** | Single Builder class | Interface + multiple implementations |
+| **Reusability** | Same Builder for all | One Director can be reused with different ConcreteBuilders |
+| **Main Advantage** | Simplicity and flexibility | Director encapsulates recipe; reusable with multiple Builders |
+| **Complexity** | Simpler | More structured |
+| **Typical Use** | General, flexible construction | Construction with pre-defined recipes |
+| **Usage Example** | `builder.WithX().WithY().Build()` | `director.Construct()` |
+| **Maintenance** | Easy to modify | Easy to add new types (new ConcreteBuilders) |
 
-### 🎯 Resumo: Qual Abordagem Escolher?
+### 🎯 Summary: Which Approach to Choose?
 
-**Use Fluent Builder (Solution)** quando:
-- Você quer simplicidade e flexibilidade
-- A ordem de construção não é crítica
-- Você precisa construir objetos de forma geral
-- Prioridade é facilidade de uso
+**Use Fluent Builder (Solution)** when:
+- You want simplicity and flexibility
+- Construction order is not critical
+- You need to build objects in a general way
+- Ease of use is a priority
 
-**Use Builder GoF (SolutionWithDirector)** quando:
-- Você precisa de diferentes algoritmos de construção (valores diferentes, mesma ordem)
-- A ordem de construção é importante e deve ser controlada
-- Você quer encapsular receitas de construção complexas
-- Você precisa de múltiplas variações do mesmo produto (ex: Gaming, Office, etc.)
-- **A ordem de construção é a mesma para múltiplos tipos** - um Director serve para todos
-- Você quer que o Client não precise conhecer a ordem de construção
+**Use Builder GoF (SolutionWithDirector)** when:
+- You need different construction algorithms (different values, same order)
+- Construction order is important and must be controlled
+- You want to encapsulate complex construction recipes
+- You need multiple variations of the same product (e.g., Gaming, Office, etc.)
+- **Construction order is the same for multiple types** - one Director serves all
+- You want the Client not to need to know the construction order
 
-**Nota importante sobre o Director**:
-- A principal vantagem do Director é a **reutilização**: um Director pode trabalhar com múltiplos Builders
-- Se precisar de ordem diferente, crie múltiplos Directors (um para cada receita)
-- O Director faz mais sentido quando a ordem é a mesma para vários tipos de construção
+**Important note about the Director**:
+- The main advantage of the Director is **reusability**: one Director can work with multiple Builders
+- If you need a different order, create multiple Directors (one for each recipe)
+- The Director makes more sense when the order is the same for various construction types
 
 ---
 
